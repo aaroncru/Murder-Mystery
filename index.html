@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Murder Mystery</title>
+  <title>Mrurder Mystery</title>
   <style>
     body, html {
       margin: 0;
@@ -13,33 +13,68 @@
     }
 
     .background {
-      background-image: url('fondo.jpeg'); /* imagen de fondo */
+      background-image: url('fondo.jpeg'); /* Imagen de fondo */
       background-size: cover;
       background-position: center;
       height: 100%;
       width: 100%;
+      position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
     .img-button {
-      width: 150px; /* ajusta el tamaño si lo deseas */
+      width: 150px;
       cursor: pointer;
-      transition: transform 0.2s;
+      transition: transform 0.3s ease;
     }
 
     .img-button:hover {
+      transform: scale(1.5);
+    }
+
+    .top-left-buttons {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .top-left-buttons img {
+      width: 60px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .top-left-buttons img:hover {
       transform: scale(1.35);
     }
   </style>
 </head>
 <body>
   <div class="background">
+    
+    <!-- Botones en la esquina superior izquierda -->
+    <div class="top-left-buttons">
+      <a href="https://www.alaskaescaperooms.com/" target="_blank">
+        <img src="btn3.png" alt="Alaska Escape Room" />
+      </a>
+      <a href="https://www.instagram.com/alaskaescaperooms/" target="_blank">
+        <img src="btn2.png" alt="Instagram" />
+      </a>
+      <a href="https://www.facebook.com/Alaskaescaperooms" target="_blank">
+        <img src="btn1.png" alt="Facebook" />
+      </a>
+    </div>
+
+    <!-- Botón principal centrado -->
     <a href="https://www.youtube.com/watch?v=y6s_aPgMl4Y" target="_blank">
-      <img src="boton.png" alt="Botón" class="img-button">
+      <img src="boton.png" alt="Botón Principal" class="img-button" />
     </a>
+
   </div>
 </body>
 </html>
-
