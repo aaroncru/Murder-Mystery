@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mrurder Mystery</title>
+  <title>Murder mystery</title>
   <style>
     body, html {
       margin: 0;
@@ -31,7 +31,7 @@
     }
 
     .img-button:hover {
-      transform: scale(1.5);
+      transform: scale(1.3);
     }
 
     .top-left-buttons {
@@ -44,37 +44,90 @@
     }
 
     .top-left-buttons img {
-      width: 60px;
+      width: 30px;
       cursor: pointer;
       transition: transform 0.3s ease;
     }
 
     .top-left-buttons img:hover {
-      transform: scale(1.35);
+      transform: scale(1.3);
+    }
+
+    .bottom-left-button {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+    }
+
+    .bottom-left-button img {
+      width: 30px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .bottom-left-button img:hover {
+      transform: scale(1.3);
+    }
+
+    .secret-card {
+      position: absolute;
+      bottom: 100px;
+      left: 20px;
+      background-color: rgba(0, 0, 0, 0.9);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 16px;
+      display: none;
+      max-width: 300px;
+      box-shadow: 0 0 10px black;
     }
   </style>
 </head>
 <body>
   <div class="background">
-    
+
     <!-- Botones en la esquina superior izquierda -->
     <div class="top-left-buttons">
       <a href="https://www.alaskaescaperooms.com/" target="_blank">
-        <img src="btn3.png" alt="Alaska Escape Room" />
+        <img src="btn3.png" alt="alaska escape room" />
       </a>
       <a href="https://www.instagram.com/alaskaescaperooms/" target="_blank">
-        <img src="btn2.png" alt="Instagram" />
+        <img src="btn2.png" alt="instagram" />
       </a>
       <a href="https://www.facebook.com/Alaskaescaperooms" target="_blank">
-        <img src="btn1.png" alt="Facebook" />
+        <img src="btn1.png" alt="facebook" />
       </a>
     </div>
 
     <!-- Botón principal centrado -->
-    <a href="https://www.youtube.com/watch?v=y6s_aPgMl4Y" target="_blank">
+    <a href="https://www.youtube.com/" target="_blank">
       <img src="boton.png" alt="Botón Principal" class="img-button" />
     </a>
 
+    <!-- Botón en la parte inferior izquierda -->
+    <div class="bottom-left-button">
+      <img src="secreto.png" alt="Botón Secreto" onclick="mostrarSecreto()" />
+    </div>
+
+    <!-- Tarjeta de secreto -->
+    <div class="secret-card" id="secretCard">
+      The secrets are still kept somewhere
+    </div>
+
   </div>
+
+  <script>
+    function mostrarSecreto() {
+      const card = document.getElementById('secretCard');
+      card.style.display = 'block';
+      // Opcional: ocultar después de unos segundos
+      setTimeout(() => {
+        card.style.display = 'none';
+      }, 5000); // 5 segundos
+    }
+  </script>
 </body>
 </html>
+
