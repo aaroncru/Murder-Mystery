@@ -22,7 +22,7 @@
     }
 
     .pantalla-inicio {
-      background-image: url('fondo.jpeg'); /* fondo de inicio */
+      background-image: url('fondo.jpg'); /* fondo de inicio */
       background-size: cover;
       background-position: center;
       display: flex;
@@ -184,6 +184,14 @@
 .objeto:hover {
   transform: scale(1.4);
 }
+.logo-superior {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 100px; /* ajusta el tamaño según tu imagen */
+}
 
   </style>
 </head>
@@ -220,6 +228,8 @@
 
   <!-- Pantalla de juego -->
   <div class="pantalla-juego" id="pantallaJuego">
+  <!-- Logo en la parte superior central -->
+  <img src="logo.png" alt="Logo" class="logo-superior" />
 
     <!-- Fondo animado -->
     <div class="background-anim">
