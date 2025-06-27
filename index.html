@@ -43,7 +43,7 @@
 
     .pantalla-juego {
   position: relative;
-  background-image: url('logo2.jpg');
+  background-image: url('logo.jpg');
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -284,6 +284,18 @@
     function iniciarJuego() {
       document.getElementById('pantallaInicio').style.opacity = '0';
       document.getElementById('pantallaJuego').classList.add('activa');
+       // Apagar visualmente con transición
+    pantallaInicio.style.opacity = '0';
+
+    // Activar juego
+    pantallaJuego.classList.add('activa');
+
+    // Después de la animación (1s), ocultar completamente el inicio
+    setTimeout(() => {
+      pantallaInicio.style.display = 'none';
+    }, 1000); // mismo tiempo que el transition: opacity 1s
+  }
+
     }
 
     function mostrarSecreto() {
