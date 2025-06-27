@@ -224,6 +224,7 @@
   z-index: 10;
   box-shadow: 0 0 15px red;
   font-family: monospace;
+  width: 300px;
 }
 
 .contenido-pista {
@@ -233,8 +234,9 @@
 
 .contenido-pista h2 {
   font-size: 30px;
-  letter-spacing: 15px;
+  letter-spacing: 20px;
   margin-bottom: 10px;
+  white-space: nowrap;
 }
 
 .contenido-pista p {
@@ -316,7 +318,7 @@
 </div>
     
 <!-- Objetos escondidos en la pantalla -->
-<img src="coat.png" class="objeto" style="top: 20%; left: 15%;" alt="Abrigo" onclick="mostrarTarjetaAbrigo()" />
+<img src="coat.png" class="objeto" id="abrigo" style="top: 20%; left: 15%;" alt="Abrigo" onclick="mostrarTarjetaAbrigo()" />
     <div id="tarjetaAbrigo" class="tarjeta-pista" style="display: none;">
   <div class="contenido-pista">
     <span class="cerrar" onclick="cerrarTarjetaAbrigo()">✖</span>
