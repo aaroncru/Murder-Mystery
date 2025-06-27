@@ -288,21 +288,17 @@
   <!-- Lógica -->
   <script>
     function iniciarJuego() {
-      document.getElementById('pantallaInicio').style.opacity = '0';
-      document.getElementById('pantallaJuego').classList.add('activa');
-       // Apagar visualmente con transición
-    pantallaInicio.style.opacity = '0';
+  const pantallaInicio = document.getElementById('pantallaInicio');
+  const pantallaJuego = document.getElementById('pantallaJuego');
 
-    // Activar juego
-    pantallaJuego.classList.add('activa');
+  pantallaInicio.style.opacity = '0';
+  pantallaJuego.classList.add('activa');
 
-    // Después de la animación (1s), ocultar completamente el inicio
-    setTimeout(() => {
-      pantallaInicio.style.display = 'none';
-    }, 1000); // mismo tiempo que el transition: opacity 1s
-  }
+  setTimeout(() => {
+    pantallaInicio.style.display = 'none';
+  }, 1000);
+}
 
-    }
 
     function mostrarSecreto() {
       const card = document.getElementById('secretCard');
