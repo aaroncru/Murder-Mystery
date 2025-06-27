@@ -141,6 +141,39 @@
       z-index: 3;
       box-shadow: 0 0 10px black;
     }
+    .top-right-hearts {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 3;
+  display: flex;
+  gap: 10px;
+}
+
+.heart {
+  width: 40px;
+  animation: heartbeat 1s infinite;
+  transform-origin: center;
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  14% {
+    transform: scale(1.3);
+  }
+  28% {
+    transform: scale(1);
+  }
+  42% {
+    transform: scale(1.3);
+  }
+  70% {
+    transform: scale(1);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -185,6 +218,13 @@
       <div class="blob" style="top: 70%; left: 50%; animation-delay: 6s;"></div>
       <div class="blob" style="top: 30%; left: 60%; animation-delay: 1s;"></div>
     </div>
+    <!-- Corazones en la esquina superior derecha -->
+<div class="top-right-hearts">
+  <img src="heart.png" class="heart" alt="❤️" />
+  <img src="heart.png" class="heart" alt="❤️" />
+  <img src="heart.png" class="heart" alt="❤️" />
+</div>
+
 
     <!-- Contenido principal del juego -->
     <div class="contenido-juego">
