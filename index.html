@@ -246,8 +246,8 @@
 
 .cerrar {
   position: absolute;
-  top: 2px;
-  right: 5px;
+  top: -20px;
+  right: -20px;
   background-color: red;
   color: white;
   border-radius: 50%;
@@ -260,7 +260,20 @@
 .cerrar:hover {
   background-color: darkred;
 }
-
+.imagen-vino {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  max-width: 80%;
+  filter: brightness(0.1) blur(10px); /* muy oscura y borrosa al inicio */
+  transition: filter 0.5s ease;
+  z-index: 10;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+  cursor: pointer;
+}
 
   </style>
 </head>
@@ -326,9 +339,14 @@
     <p>remember</p>
   </div>
 </div>
+<img src="copadevino.png" class="objeto" id="copa" style="top: 80%; left: 10%;" alt="Vino" onclick="mostrarImagenVino()"/>
+    <!-- Imagen misteriosa -->
+<div id="imagenVinoContainer" style="display: none;">
+  <img src="pista-vino.jpg" id="imagenVino" class="imagen-vino" alt="Imagen secreta" />
+</div>
 <img src="spaguetti.png" class="objeto" style="top: 60%; left: 40%;" alt="Spaghetti" />
 <img src="hat.png" class="objeto" style="top: 35%; left: 75%;" alt="Sombrero" />
-<img src="copadevino.png" class="objeto" style="top: 80%; left: 10%;" alt="Vino" />
+
 
 
     <!-- Contenido principal del juego -->
@@ -375,6 +393,31 @@ function cerrarTarjetaAbrigo() {
 
   // Eliminar el abrigo (no se puede volver a usar)
   abrigo.remove();
+}
+let nitidez = 0; // 0 = muy borrosa, 1 = totalmente visible
+
+function mostrarImagenVino() {
+  const container = document.getElementById('imagenVinoContainer');
+  const imagen = document.getElementById('imagenVino');
+
+  container.style.display = 'block';
+
+  // Cada clic reduce el blur y aumenta la visibilidad
+  imagen.onclick = () => {
+    nitidez += 1;
+
+    // Define pasos para mejorar la imagen poco a poco
+    const blur = Math.max(10 - nitidez * 2, 0); // reduce blur
+    const brightness = Math.min(0.1 + nitidez * 0.2, 1); // aumenta brillo
+
+    imagen.style.filter = `brightness(${brightness}) blur(${blur}px)`;
+
+    // Opcional: después de cierto punto, desactiva el clic
+    if (nitidez >= 5) {
+      imagen.onclick = null; // ya está revelada
+      document.getElementById('copa').remove(); // eliminar la copa
+    }
+  };
 }
 
   </script>
