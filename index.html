@@ -267,20 +267,21 @@
   transform: translate(-50%, -50%);
   width: 300px;
   max-width: 80%;
-  filter: brightness(0.1) blur(10px); /* muy oscura y borrosa al inicio */
+  filter: brightness(0.1) blur(10px);
   transition: filter 0.5s ease;
   z-index: 10;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0,0,0,0.7);
   cursor: pointer;
 }
+
 .cerrar-vino {
   position: absolute;
   top: 20px;
   right: 30px;
   color: white;
   background-color: transparent;
-  font-size: 10px;
+  font-size: 18px;
   cursor: pointer;
   z-index: 12;
   padding: 5px;
@@ -290,6 +291,7 @@
 .cerrar-vino:hover {
   color: red;
 }
+
 
   </style>
 </head>
@@ -361,6 +363,7 @@
   <img src="pista-vino.jpg" id="imagenVino" class="imagen-vino" alt="Imagen secreta" />
   <span class="cerrar-vino" onclick="cerrarImagenVino()">✖</span>
 </div>
+
 
 <img src="spaguetti.png" class="objeto" style="top: 60%; left: 40%;" alt="Spaghetti" />
 <img src="hat.png" class="objeto" style="top: 35%; left: 75%;" alt="Sombrero" />
