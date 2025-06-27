@@ -42,14 +42,24 @@
     }
 
     .pantalla-juego {
-     background-image: url('logo2.png'); /* tu nueva imagen */
-     background-size: cover;
-     background-position: center;
-     overflow: hidden;
-     z-index: 1;
-     opacity: 0;
-     pointer-events: none;
+  position: relative;
+  background-image: url('logo2.jpg');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  z-index: 1;
+  opacity: 0;
+  pointer-events: none;
     }
+.fondo-overlay {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0, 0, 0, 0.4); /* oscurece suavemente */
+  z-index: 0;
+}
 
     .pantalla-juego.activa {
       opacity: 1;
@@ -233,6 +243,8 @@
 
   <!-- Pantalla de juego -->
   <div class="pantalla-juego" id="pantallaJuego">
+    <div class="fondo-overlay"></div>
+
   <!-- Logo en la parte superior central -->
   <img src="logo.png" alt="Logo" class="logo-superior" />
 
