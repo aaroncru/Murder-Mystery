@@ -43,7 +43,7 @@
 
     .pantalla-juego {
   position: relative;
-  background-image: url('logo.jpg');
+  background-image: url('logo.png');
   background-size: cover;
   background-position: center;
   overflow: hidden;
@@ -357,7 +357,7 @@
     <p>remember</p>
   </div>
 </div>
-<img src="copadevino.png" class="objeto" id="copa" style="top: 80%; left: 10%;" alt="Vino" onclick="mostrarImagenVino()"/>
+<img src="copadevino.png" class="objeto" id="copa" style="top: 80%; left: 10%;" alt="Vino"/>
 <!-- Imagen misteriosa de la copa -->
 <div id="imagenVinoContainer" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 11;">
   <div style="position: relative; display: inline-block;">
@@ -438,7 +438,9 @@ let nitidez = 0;
       imagen.onclick = null; // ya está revelada
       document.getElementById('copa').remove(); // eliminar la copa
     }
-  };
+    document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("copa").addEventListener("click", mostrarImagenVino);
+});
 function cerrarImagenVino() {
   const container = document.getElementById('imagenVinoContainer');
   const copa = document.getElementById('copa');
