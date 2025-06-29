@@ -370,8 +370,8 @@
 
 <!-- Controles del spaghetti (ocultos al principio) -->
 <div id="spaghettiControles" style="display: none; position: absolute; top: 68%; left: 42%; z-index: 10; flex-direction: column; gap: 10px;">
-  <button onclick="reproducirDisparo()" style="padding: 8px 12px; background: darkred; color: white; border: none; border-radius: 5px; cursor: pointer;">🔊 Reproducir</button>
-  <button onclick="cerrarSpaghetti()" style="padding: 8px 12px; background: black; color: white; border: none; border-radius: 5px; cursor: pointer;">❌ Cerrar</button>
+  <button onclick="reproducirDisparo()" style="padding: 8px 12px; background: darkred; color: white; border: none; border-radius: 5px; cursor: pointer;">🔊 Play Again</button>
+  <button onclick="cerrarSpaghetti()" style="padding: 8px 12px; background: black; color: white; border: none; border-radius: 5px; cursor: pointer;">❌ Close</button>
 </div>
 
 <!-- Audio del disparo -->
@@ -418,6 +418,59 @@
       setTimeout(() => {
         card.style.display = 'none';
       }, 5000); // Ocultar después de 5 segundos
+      document.addEventListener("DOMContentLoaded", () => {
+  // COPA DE VINO
+  const botonVino = document.getElementById("botonVino");
+  const imagenVino = document.getElementById("imagenVino");
+  const pistaVinoContainer = document.getElementById("pistaVinoContainer");
+  const cerrarVinoBtn = document.getElementById("cerrarVinoBtn");
+
+  if (botonVino) {
+    botonVino.addEventListener("click", () => {
+      blurNivel = 20;
+      imagenVino.style.filter = `blur(${blurNivel}px)`;
+      pistaVinoContainer.style.display = "flex";
+    });
+  }
+
+  if (imagenVino) {
+    imagenVino.addEventListener("click", () => {
+      if (blurNivel > 0) {
+        blurNivel -= 4;
+        imagenVino.style.filter = `blur(${Math.max(0, blurNivel)}px)`;
+      }
+    });
+  }
+
+  if (cerrarVinoBtn) {
+    cerrarVinoBtn.addEventListener("click", cerrarPistaVino);
+  }
+
+  // SPAGHETTI
+  const spaghetti = document.getElementById("spaghetti");
+  const sonidoDisparo = document.getElementById("sonidoDisparo");
+  const controles = document.getElementById("spaghettiControles");
+
+  if (spaghetti) {
+    spaghetti.addEventListener("click", () => {
+      sonidoDisparo.currentTime = 0;
+      sonidoDisparo.play();
+      controles.style.display = "flex";
+      spaghetti.style.pointerEvents = "none";
+    });
+  }
+
+  // SOMBRERO
+  const sombrero = document.querySelector("img[alt='Sombrero']");
+  const mensaje = document.getElementById("mensajeSombrero");
+
+  if (sombrero) {
+    sombrero.addEventListener("click", () => {
+      mensaje.style.display = "block";
+    });
+  }
+});
+
     }
     
     function mostrarTarjetaAbrigo() {
@@ -437,55 +490,6 @@ function cerrarTarjetaAbrigo() {
 }
     let blurNivel = 20; // Comienza muy desenfocada
 
-  document.addEventListener("DOMContentLoaded", () => {
-    const botonVino = document.getElementById("botonVino");
-    const imagenVino = document.getElementById("imagenVino");
-    const pistaVinoContainer = document.getElementById("pistaVinoContainer");
-    const cerrarVinoBtn = document.getElementById("cerrarVinoBtn");
-
-    if (botonVino) {
-      botonVino.addEventListener("click", () => {
-        blurNivel = 20; // Reinicia el nivel de blur cada vez que se abre
-        imagenVino.style.filter = `blur(${blurNivel}px)`;
-        pistaVinoContainer.style.display = "flex";
-      });
-    }
-
-    if (imagenVino) {
-      imagenVino.addEventListener("click", () => {
-        if (blurNivel > 0) {
-          blurNivel -= 4; // Reduce el blur gradualmente
-          imagenVino.style.filter = `blur(${Math.max(0, blurNivel)}px)`;
-        }
-      });
-    }
-
-    if (cerrarVinoBtn) {
-      cerrarVinoBtn.addEventListener("click", () => {
-        pistaVinoContainer.style.display = "none";
-        // Oculta la copa de vino para que no se pueda volver a abrir
-        botonVino.style.display = "none";
-      });
-    }
-  });
-document.addEventListener("DOMContentLoaded", () => {
-  const spaghetti = document.getElementById("spaghetti");
-  const sonidoDisparo = document.getElementById("sonidoDisparo");
-  const controles = document.getElementById("spaghettiControles");
-
-  spaghetti.addEventListener("click", () => {
-    // Reproducir sonido
-    sonidoDisparo.currentTime = 0;
-    sonidoDisparo.play();
-
-    // Mostrar los controles
-    controles.style.display = "flex";
-
-    // Desactivar clics posteriores
-    spaghetti.style.pointerEvents = "none";
-  });
-});
-
 function reproducirDisparo() {
   const sonido = document.getElementById("sonidoDisparo");
   sonido.currentTime = 0;
@@ -496,18 +500,6 @@ function cerrarSpaghetti() {
   document.getElementById("spaghetti").remove();
   document.getElementById("spaghettiControles").remove();
 }
-
-// Evento al hacer clic en el sombrero
-document.addEventListener("DOMContentLoaded", () => {
-  const sombrero = document.querySelector("img[alt='Sombrero']");
-  const mensaje = document.getElementById("mensajeSombrero");
-
-  if (sombrero) {
-    sombrero.addEventListener("click", () => {
-      mensaje.style.display = "block";
-    });
-  }
-});
 
 function cerrarSombrero() {
   document.getElementById("mensajeSombrero").style.display = "none";
@@ -540,12 +532,13 @@ function cerrarPistaVino() {
   verificarObjetosCerrados();
 }
 
-function cerrarSpaguetti() {
-  document.getElementById("spaguettiControles").style.display = "none";
-  const spaguetti = document.getElementById("spaguetti");
-  if (spaguetti) spaguetti.remove();
+function cerrarSpaghetti() {
+  document.getElementById("spaghettiControles").style.display = "none";
+  const spaghetti = document.getElementById("spaghetti");
+  if (spaghetti) spaghetti.remove();
   verificarObjetosCerrados();
 }
+
 
 function cerrarSombrero() {
   document.getElementById("mensajeSombrero").style.display = "none";
