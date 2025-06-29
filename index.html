@@ -379,8 +379,14 @@
 
 
 <img src="hat.png" class="objeto" style="top: 35%; left: 75%;" alt="Sombrero" />
-
-
+<div id="mensajeSombrero" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  background-color: rgba(0,0,0,0.9); padding: 20px 30px; border-radius: 10px; box-shadow: 0 0 20px red; z-index: 15;">
+  <span onclick="cerrarSombrero()" style="position: absolute; top: -15px; right: -15px; background-color: red; color: white; 
+    font-weight: bold; border-radius: 50%; padding: 5px 10px; cursor: pointer; font-size: 14px;">✖</span>
+  <p style="color: red; font-size: 20px; font-family: monospace; text-align: center;">
+    Bullet leaves, brain trees.
+  </p>
+</div>
 
     <!-- Contenido principal del juego -->
     <div class="contenido-juego">
@@ -489,6 +495,25 @@ function cerrarSpaghetti() {
   document.getElementById("spaghettiControles").remove();
 }
 
+// Evento al hacer clic en el sombrero
+document.addEventListener("DOMContentLoaded", () => {
+  const sombrero = document.querySelector("img[alt='Sombrero']");
+  const mensaje = document.getElementById("mensajeSombrero");
+
+  if (sombrero) {
+    sombrero.addEventListener("click", () => {
+      mensaje.style.display = "block";
+    });
+  }
+});
+
+function cerrarSombrero() {
+  document.getElementById("mensajeSombrero").style.display = "none";
+  const sombrero = document.querySelector("img[alt='Sombrero']");
+  if (sombrero) {
+    sombrero.remove();
+  }
+}
 
 
   </script>
