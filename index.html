@@ -367,11 +367,16 @@
 
 <img src="spaguetti.png" id="spaghetti" class="objeto" style="top: 60%; left: 40%;" alt="Spaghetti" />
 
-<div id="spaghettiControles" style="display: none; position: absolute; top: 65%; left: 42%; z-index: 10; display: flex; flex-direction: column; gap: 10px;">
+<!-- Spaghetti -->
+<img src="spaguetti.png" id="spaghetti" class="objeto" style="top: 60%; left: 40%;" alt="Spaghetti" />
+
+<!-- Controles del spaghetti (ocultos al principio) -->
+<div id="spaghettiControles" style="display: none; position: absolute; top: 68%; left: 42%; z-index: 10; flex-direction: column; gap: 10px;">
   <button onclick="reproducirDisparo()" style="padding: 8px 12px; background: darkred; color: white; border: none; border-radius: 5px; cursor: pointer;">🔊 Reproducir</button>
   <button onclick="cerrarSpaghetti()" style="padding: 8px 12px; background: black; color: white; border: none; border-radius: 5px; cursor: pointer;">❌ Cerrar</button>
 </div>
 
+<!-- Audio del disparo -->
 <audio id="sonidoDisparo" src="disparo.mp3"></audio>
 
 
@@ -463,9 +468,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const controles = document.getElementById("spaghettiControles");
 
   spaghetti.addEventListener("click", () => {
+    // Reproducir sonido
     sonidoDisparo.currentTime = 0;
     sonidoDisparo.play();
-    controles.style.display = "flex"; // Mostrar los botones
+
+    // Mostrar los controles
+    controles.style.display = "flex";
+
+    // Desactivar clics posteriores
+    spaghetti.style.pointerEvents = "none";
   });
 });
 
@@ -476,11 +487,10 @@ function reproducirDisparo() {
 }
 
 function cerrarSpaghetti() {
-  const spaghetti = document.getElementById("spaghetti");
-  const controles = document.getElementById("spaghettiControles");
-  spaghetti.remove();
-  controles.remove();
+  document.getElementById("spaghetti").remove();
+  document.getElementById("spaghettiControles").remove();
 }
+
 
 
   </script>
