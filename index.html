@@ -417,15 +417,12 @@ function cerrarTarjetaAbrigo() {
   // Eliminar el abrigo (no se puede volver a usar)
   abrigo.remove();
 }
-let nitidez = 0; // 0 = muy borrosa, 1 = totalmente visible
-
 function mostrarImagenVino() {
   const container = document.getElementById('imagenVinoContainer');
-  const imagen = document.getElementById('imagenVino');
-
   container.style.display = 'block';
-
-  // Cada clic reduce el blur y aumenta la visibilidad
+}
+  const imagen = document.getElementById('imagenVino');
+let nitidez = 0;
   imagen.onclick = () => {
     nitidez += 1;
 
@@ -441,7 +438,6 @@ function mostrarImagenVino() {
       document.getElementById('copa').remove(); // eliminar la copa
     }
   };
-}
 function cerrarImagenVino() {
   const container = document.getElementById('imagenVinoContainer');
   const copa = document.getElementById('copa');
