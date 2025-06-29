@@ -394,8 +394,10 @@
       <h1>¡Bienvenido al juego!</h1>
       <p>Aquí irán los acertijos o interacciones principales.</p>
     </div>
-
+<!-- Imagen de puerta final -->
+<img src="puerta.png" id="puertaFinal" style=" display: none; position: absolute; bottom: 30px;right: 30px;width: 120px;cursor: pointer; z-index: 20;transition: transform 0.3s ease;" onclick="entrarPuerta()" alt="Puerta" />
   </div>
+<audio id="sonidoPuerta" src="puerta.mp3" preload="auto"></audio>
 
   <!-- Lógica -->
   <script>
@@ -513,6 +515,53 @@ function cerrarSombrero() {
   if (sombrero) {
     sombrero.remove();
   }
+}
+let objetosCerrados = 0;
+
+function verificarObjetosCerrados() {
+  objetosCerrados++;
+  if (objetosCerrados === 4) {
+    document.getElementById("puertaFinal").style.display = "block";
+  }
+}
+
+// Llama a esta función en cada cierre de objeto:
+function cerrarTarjetaAbrigo() {
+  document.getElementById('tarjetaAbrigo').style.display = 'none';
+  const abrigo = document.getElementById('abrigo');
+  if (abrigo) abrigo.remove();
+  verificarObjetosCerrados();
+}
+
+function cerrarPistaVino() {
+  document.getElementById("pistaVinoContainer").style.display = "none";
+  const vino = document.getElementById("botonVino");
+  if (vino) vino.remove();
+  verificarObjetosCerrados();
+}
+
+function cerrarSpaguetti() {
+  document.getElementById("spaguettiControles").style.display = "none";
+  const spaguetti = document.getElementById("spaguetti");
+  if (spaguetti) spaguetti.remove();
+  verificarObjetosCerrados();
+}
+
+function cerrarSombrero() {
+  document.getElementById("mensajeSombrero").style.display = "none";
+  const sombrero = document.querySelector("img[alt='Sombrero']");
+  if (sombrero) sombrero.remove();
+  verificarObjetosCerrados();
+}
+  function entrarPuerta() {
+  const audio = document.getElementById("sonidoPuerta");
+  audio.play();
+
+  // Esperar a que termine el sonido antes de avanzar
+  audio.onended = () => {
+    alert("¡La puerta se ha abierto!");
+    // window.location.href = "nivel2.html"; // Descomenta si quieres redirigir
+  };
 }
 
 
