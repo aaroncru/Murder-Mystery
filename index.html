@@ -357,15 +357,13 @@
     <p>remember</p>
   </div>
 </div>
-<img src="copadevino.png" class="objeto" id="copa" style="top: 80%; left: 10%;" alt="Vino"/>
-<!-- Imagen misteriosa de la copa -->
-<div id="imagenVinoContainer" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 11;">
-  <div style="position: relative; display: inline-block;">
-    <img src="pista-vino.jpg" id="imagenVino" class="imagen-vino" alt="Imagen secreta" />
-    <span class="cerrar-vino" onclick="cerrarImagenVino()">✖</span>
-  </div> <!-- Este cierra el contenedor de la imagen y la cruz -->
-</div>
 
+<img src="copadevino.png" id="botonVino" class="objeto" style="top: 60%; left: 40%;" alt="Vino" />
+<!-- Contenedor para la imagen secreta -->
+<div id="pistaVinoContainer" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 11; justify-content: center; align-items: center; background-color: rgba(0,0,0,0.8);">
+  <button onclick="cerrarPistaVino()" style="position: absolute; top: 20px; right: 30px; background-color: red; color: white; font-size: 18px; border: none; border-radius: 50%; width: 35px; height: 35px; cursor: pointer;">✖</button>
+  <img src="pista-vino.jpg" alt="Pista vino" style="width: 300px; max-width: 90%; border-radius: 10px; box-shadow: 0 0 20px red;">
+</div>
 
 <img src="spaguetti.png" class="objeto" style="top: 60%; left: 40%;" alt="Spaghetti" />
 <img src="hat.png" class="objeto" style="top: 35%; left: 75%;" alt="Sombrero" />
@@ -417,37 +415,19 @@ function cerrarTarjetaAbrigo() {
   // Eliminar el abrigo (no se puede volver a usar)
   abrigo.remove();
 }
-function mostrarImagenVino() {
-  const container = document.getElementById('imagenVinoContainer');
-  console.log("Click en la copa"); // <-- AÑADE ESTO
-  container.style.display = 'block';
-}
-  const imagen = document.getElementById('imagenVino');
-let nitidez = 0;
-  imagen.onclick = () => {
-    nitidez += 1;
-
-    // Define pasos para mejorar la imagen poco a poco
-    const blur = Math.max(10 - nitidez * 2, 0); // reduce blur
-    const brightness = Math.min(0.1 + nitidez * 0.2, 1); // aumenta brillo
-
-    imagen.style.filter = `brightness(${brightness}) blur(${blur}px)`;
-
-    // Opcional: después de cierto punto, desactiva el clic
-    if (nitidez >= 5) {
-      imagen.onclick = null; // ya está revelada
-      document.getElementById('copa').remove(); // eliminar la copa
+    // Mostrar la imagen al hacer clic en la copa
+  document.addEventListener("DOMContentLoaded", () => {
+    const botonVino = document.getElementById("botonVino");
+    if (botonVino) {
+      botonVino.addEventListener("click", () => {
+        document.getElementById("pistaVinoContainer").style.display = "flex";
+      });
     }
-    document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("copa").addEventListener("click", mostrarImagenVino);
-});
-function cerrarImagenVino() {
-  const container = document.getElementById('imagenVinoContainer');
-  const copa = document.getElementById('copa');
+  });
 
-  container.style.display = 'none';
-  copa.remove(); // elimina la copa para que no pueda volver a verse
-}
+  function cerrarPistaVino() {
+    document.getElementById("pistaVinoContainer").style.display = "none";
+  }
   </script>
 
 </body>
