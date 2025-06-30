@@ -434,6 +434,9 @@
 <audio id="sonidoMaletin" src="maletin.mp3" preload="auto"></audio>
 <audio id="sonidoError" src="error.mp3" preload="auto"></audio>
 <img src="maletin-abierto.png" id="maletinAbierto" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px; z-index: 60;" alt="Maletín Abierto" />
+<img src="pistola.png" id="btnPistola" alt="Pistola" style="display: none; position: absolute; bottom: 20px; right: 20px; width: 80px; cursor: pointer; z-index: 100;" onclick="accionPistola()" />
+<img src="impacto.png" id="imagenImpacto" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+z-index: 100; width: 300px; box-shadow: 0 0 15px red; border-radius: 8px;" alt="Impacto" />
 
 <!-- Caja para ingresar clave -->
 <div id="claveContainer" style=" display: none; position: absolute;top: 50%;left: 50%; transform: translate(-50%, -50%);background-color: rgba(0, 0, 0, 0.95); padding: 30px; border-radius: 10px; box-shadow: 0 0 15px red; z-index: 50; text-align: center; color: white; font-family: monospace;">
@@ -641,7 +644,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const corazones = document.querySelectorAll("#pantallaNivel2 .heart");
     const maletinAbierto = document.getElementById("maletinAbierto");
     const maletinCerrado = document.getElementById("maletin");
-
+    const claveContainer = document.getElementById("claveContainer");
+    const pistola = document.getElementById("btnPistola");
     if (claveInput.value.trim().toUpperCase() === "LEAF") {
       resultado.textContent = "✔ ¡Correcto!";
       resultado.style.color = "limegreen";
@@ -652,6 +656,7 @@ document.addEventListener("DOMContentLoaded", () => {
         resultado.textContent = "";
         maletinCerrado.style.display = "none";
         maletinAbierto.style.display = "block";
+        pistola.style.display = "block";
       }, 1000);
       
     } else {
@@ -688,6 +693,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
   }
+function accionPistola() {
+  document.getElementById("pistolaBtn").addEventListener("click", () => {
+  const imagenImpacto = document.getElementById("imagenImpacto");
+  imagenImpacto.style.display = "block";
+
+  // Opcional: esconder después de unos segundos
+  setTimeout(() => {
+    imagenImpacto.style.display = "none";
+  }, 5000);
+});
+
+}
 
   </script>
 
