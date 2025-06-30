@@ -423,10 +423,10 @@
 <audio id="sonidoMaletin" src="maletin.mp3" preload="auto"></audio>
 <!-- Caja para ingresar clave -->
 <div id="claveContainer" style=" display: none; position: absolute;top: 50%;left: 50%; transform: translate(-50%, -50%);background-color: rgba(0, 0, 0, 0.95); padding: 30px; border-radius: 10px; box-shadow: 0 0 15px red; z-index: 50; text-align: center; color: white; font-family: monospace;">
-  <p>Ingresa la clave:</p>
+  <p>Enter de password:</p>
   <input type="text" id="inputClave" style="padding: 10px; font-size: 16px;  border: none; border-radius: 5px; text-transform: uppercase; margin-bottom: 10px; " />
   <br />
-  <button onclick="verificarClave()" style=" padding: 8px 20px;background-color: darkred;color: white; border: none; border-radius: 5px; cursor: pointer; ">🔐 Verificar</button>
+  <button onclick="verificarClave()" style=" padding: 8px 20px;background-color: darkred;color: white; border: none; border-radius: 5px; cursor: pointer; ">🔐 Verify</button>
   <p id="mensajeClave" style="margin-top: 10px; font-size: 14px;"></p>
 </div>
 </div>
@@ -624,10 +624,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const mensaje = document.getElementById("mensajeClave");
 
     if (clave === "LEAF") {
-      mensaje.textContent = "✅ ¡Clave correcta!";
+      mensaje.textContent = "✅ ¡Correct Password!";
       mensaje.style.color = "limegreen";
     } else {
-      mensaje.textContent = "❌ Clave incorrecta";
+      mensaje.textContent = "❌ Incorrect Password";
       mensaje.style.color = "crimson";
     }
   }
