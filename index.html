@@ -394,7 +394,7 @@
       <h1>Welcome to the game!</h1>
     </div>
 <!-- Imagen de puerta final -->
-<img src="puerta.png" id="puertaFinal" style=" display: none; position: absolute; bottom: 30px;right: 30px;width: 120px;cursor: pointer; z-index: 20;transition: transform 0.3s ease;" onclick="entrarPuerta()" alt="Puerta" />
+<img src="puerta.png" id="puertaFinal" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; cursor: pointer; z-index: 20; transition: transform 0.3s ease;" onclick="entrarPuerta()" alt="Puerta" />
   </div>
 <audio id="sonidoPuerta" src="puerta.mp3" preload="auto"></audio>
 
@@ -547,12 +547,6 @@ function cerrarSombrero() {
   function entrarPuerta() {
   const audio = document.getElementById("sonidoPuerta");
   audio.play();
-
-  // Esperar a que termine el sonido antes de avanzar
-  audio.onended = () => {
-    alert("¡La puerta se ha abierto!");
-    // window.location.href = "nivel2.html"; // Descomenta si quieres redirigir
-  };
 }
 
 
