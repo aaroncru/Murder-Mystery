@@ -639,6 +639,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const claveInput = document.getElementById("inputClave");
     const resultado = document.getElementById("resultadoClave");
     const corazones = document.querySelectorAll("#pantallaNivel2 .heart");
+    const maletinAbierto = document.getElementById("maletinAbierto");
+    const maletinCerrado = document.getElementById("maletin");
 
     if (claveInput.value.trim().toUpperCase() === "LEAF") {
       resultado.textContent = "✔ ¡Correcto!";
