@@ -292,6 +292,25 @@
   background-color: darkred;
   color: white;
 }
+.pantalla-nivel2 {
+  display: none;
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-image: url('cuarto-oscuro.jpg');
+  background-size: cover;
+  background-position: center;
+  z-index: 30;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  color: white;
+  text-shadow: 2px 2px 8px black;
+}
+
+.pantalla-nivel2.activa {
+  display: flex;
+}
 
   </style>
 </head>
@@ -398,10 +417,10 @@
   </div>
 <audio id="sonidoPuerta" src="puerta.mp3" preload="auto"></audio>
 
-<!-- Pantalla nivel 2 -->
-<div class="pantalla-nivel2" id="pantallaNivel2" style="display: none;position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cuarto-oscuro.jpg');background-size: cover; background-position: center; z-index: 30; display: flex; justify-content: center; align-items: center; font-size: 32px; color: white; text-shadow: 2px 2px 8px black; ">
-  <div>¡Bienvenido al Nivel 2!</div>
+  <!---PANTALLA PUERTA--->
+<div class="pantalla-nivel2" id="pantallaNivel2">
 </div>
+
 
 
   <!-- Lógica -->
@@ -550,14 +569,20 @@ function cerrarSombrero() {
   if (sombrero) sombrero.remove();
   verificarObjetosCerrados();
 }
-  function entrarPuerta() {
+ function entrarPuerta() {
   const audio = document.getElementById("sonidoPuerta");
   audio.play();
-      audio.onended = () => {
+
+  audio.onended = () => {
+    // Oculta la pantalla anterior
+    document.getElementById("pantallaJuego").classList.remove("activa");
     document.getElementById("pantallaJuego").style.display = "none";
-    document.getElementById("pantallaNivel2").style.display = "flex";
+
+    // Muestra la pantalla del nivel 2
+    document.getElementById("pantallaNivel2").classList.add("activa");
   };
 }
+
 
   </script>
 
