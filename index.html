@@ -694,7 +694,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 function accionPistola() {
-  document.getElementById("pistolaBtn").addEventListener("click", () => {
   const imagenImpacto = document.getElementById("imagenImpacto");
   imagenImpacto.style.display = "block";
 
@@ -702,9 +701,8 @@ function accionPistola() {
   setTimeout(() => {
     imagenImpacto.style.display = "none";
   }, 5000);
-});
-
 }
+
 
   </script>
 
