@@ -433,6 +433,7 @@
   <img src="maletin.png" id="maletin" alt="Maletín" style="position: absolute; top: 50%; left: 50%; bottom: 40px; right: 40px; width: 100px; cursor: pointer;" />
 <audio id="sonidoMaletin" src="maletin.mp3" preload="auto"></audio>
 <audio id="sonidoError" src="error.mp3" preload="auto"></audio>
+<img src="maletin-abierto.png" id="maletinAbierto" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px; z-index: 60;" alt="Maletín Abierto" />
 
 <!-- Caja para ingresar clave -->
 <div id="claveContainer" style=" display: none; position: absolute;top: 50%;left: 50%; transform: translate(-50%, -50%);background-color: rgba(0, 0, 0, 0.95); padding: 30px; border-radius: 10px; box-shadow: 0 0 15px red; z-index: 50; text-align: center; color: white; font-family: monospace;">
@@ -642,6 +643,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (claveInput.value.trim().toUpperCase() === "LEAF") {
       resultado.textContent = "✔ ¡Correcto!";
       resultado.style.color = "limegreen";
+
+       // Espera 1 segundo, luego oculta caja e imagen y muestra maletín abierto
+      setTimeout(() => {
+        document.getElementById("claveContainer").style.display = "none";
+        resultado.textContent = "";
+        maletinAbierto.style.display = "block";
+      }, 1000);
+      
     } else {
       resultado.textContent = "✖ Incorrecto";
       resultado.style.color = "red";
