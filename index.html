@@ -420,6 +420,7 @@
   background-color: rgba(0,0,0,0.85); padding: 30px 40px; border-radius: 10px; color: red; font-size: 40px; font-family: monospace; box-shadow: 0 0 20px red; z-index: 100;">
   GAME OVER
 </div>
+<audio id="sonidoGameOver" src="gameover.mp3" preload="auto"></audio>
 
   <!---PANTALLA PUERTA--->
 <div class="pantalla-nivel2" id="pantallaNivel2">
@@ -657,12 +658,22 @@ document.addEventListener("DOMContentLoaded", () => {
         corazones[corazones.length - 1].remove();
       }
 
-      // Opcional: si pierde todos los corazones
       if (corazones.length - 1 === 0) {
-       document.getElementById("mensajeGameOver").style.display = "block";
-      // Opcional: deshabilita el input
-      document.getElementById("inputClave").disabled = true;
-      }
+  // Mostrar mensaje de GAME OVER
+  const mensajeGameOver = document.getElementById("mensajeGameOver");
+  mensajeGameOver.style.display = "block";
+
+  // Reproducir sonido de GAME OVER
+  const sonidoGameOver = document.getElementById("sonidoGameOver");
+  if (sonidoGameOver) {
+    sonidoGameOver.currentTime = 0;
+    sonidoGameOver.play();
+  }
+
+  // Deshabilita el input
+  document.getElementById("inputClave").disabled = true;
+}
+
     }
   }
 
