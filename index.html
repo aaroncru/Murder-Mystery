@@ -419,6 +419,9 @@
 
   <!---PANTALLA PUERTA--->
 <div class="pantalla-nivel2" id="pantallaNivel2">
+  <img src="maletin.png" id="maletin" alt="Maletín" style="width: 100px; cursor: pointer;" />
+<audio id="sonidoMaletin" src="maletin.mp3" preload="auto"></audio>
+
 </div>
 
 
@@ -582,6 +585,17 @@ function cerrarSombrero() {
     document.getElementById("pantallaNivel2").classList.add("activa");
   };
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const maletin = document.getElementById("maletin");
+  const sonidoMaletin = document.getElementById("sonidoMaletin");
+
+  if (maletin && sonidoMaletin) {
+    maletin.addEventListener("click", () => {
+      sonidoMaletin.currentTime = 0;
+      sonidoMaletin.play();
+    });
+  }
+});
 
 
   </script>
