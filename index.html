@@ -432,8 +432,8 @@
   <p>Enter de password:</p>
   <input type="text" id="inputClave" style="padding: 10px; font-size: 16px;  border: none; border-radius: 5px; text-transform: uppercase; margin-bottom: 10px; " />
   <br />
-  <button style=" padding: 8px 20px;background-color: darkred;color: white; border: none; border-radius: 5px; cursor: pointer; ">🔐 Verify</button>
-  <p id="mensajeClave" style="margin-top: 10px; font-size: 14px;"></p>
+  <button onclick="verificarClave()" style=" padding: 8px 20px;background-color: darkred;color: white; border: none; border-radius: 5px; cursor: pointer; ">🔐 Verify</button>
+  <p id="resultadoClave" style="margin-top: 10px; font-size: 14px;"></p>
 </div>
 </div>
 
@@ -620,30 +620,17 @@ document.addEventListener("DOMContentLoaded", () => {
         sonidoMaletin.play();
         claveContainer.style.display = "block";
         document.getElementById("inputClave").value = ""; // limpia campo
-        document.getElementById("mensajeClave").textContent = ""; // limpia mensaje
+        document.getElementById("resultadoClave").textContent = ""; // limpia mensaje
       });
     }
   });
 
-  function verificarClave() {
-    const clave = document.getElementById("inputClave").value.trim().toUpperCase();
-    const mensaje = document.getElementById("mensajeClave");
-
-    if (clave === "LEAF") {
-      mensaje.textContent = "✅ ¡Correct Password!";
-      mensaje.style.color = "limegreen";
-    } else {
-      mensaje.textContent = "❌ Incorrect Password";
-      mensaje.style.color = "crimson";
-    }
-  }
-
   let intentosFallidos = 0;
 
   function verificarClave() {
-    const claveInput = document.getElementById("claveMaletin");
+    const claveInput = document.getElementById("inputClave");
     const resultado = document.getElementById("resultadoClave");
-    const corazones = document.querySelectorAll("#corazonesNivel2 .heart");
+    const corazones = document.querySelectorAll("#pantallaNivel2 .heart");
 
     if (claveInput.value.trim().toUpperCase() === "LEAF") {
       resultado.textContent = "✔ ¡Correcto!";
