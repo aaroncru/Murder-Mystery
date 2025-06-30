@@ -416,6 +416,10 @@
 <img src="puerta.png" id="puertaFinal" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 120px; cursor: pointer; z-index: 20; transition: transform 0.3s ease;" onclick="entrarPuerta()" alt="Puerta" />
   </div>
 <audio id="sonidoPuerta" src="puerta.mp3" preload="auto"></audio>
+<div id="mensajeGameOver" style="display: none; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+  background-color: rgba(0,0,0,0.85); padding: 30px 40px; border-radius: 10px; color: red; font-size: 40px; font-family: monospace; box-shadow: 0 0 20px red; z-index: 100;">
+  GAME OVER
+</div>
 
   <!---PANTALLA PUERTA--->
 <div class="pantalla-nivel2" id="pantallaNivel2">
@@ -427,6 +431,8 @@
 
   <img src="maletin.png" id="maletin" alt="Maletín" style="position: absolute; top: 50%; left: 50%; bottom: 40px; right: 40px; width: 100px; cursor: pointer;" />
 <audio id="sonidoMaletin" src="maletin.mp3" preload="auto"></audio>
+<audio id="sonidoError" src="error.mp3" preload="auto"></audio>
+
 <!-- Caja para ingresar clave -->
 <div id="claveContainer" style=" display: none; position: absolute;top: 50%;left: 50%; transform: translate(-50%, -50%);background-color: rgba(0, 0, 0, 0.95); padding: 30px; border-radius: 10px; box-shadow: 0 0 15px red; z-index: 50; text-align: center; color: white; font-family: monospace;">
   <p>Enter de password:</p>
@@ -640,6 +646,12 @@ document.addEventListener("DOMContentLoaded", () => {
       resultado.style.color = "red";
       intentosFallidos++;
 
+      // 🔊 Reproducir sonido
+      if (sonidoError) {
+        sonidoError.currentTime = 0;
+        sonidoError.play();
+      }
+      
       // Eliminar un corazón si quedan
       if (corazones.length > 0) {
         corazones[corazones.length - 1].remove();
@@ -647,9 +659,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Opcional: si pierde todos los corazones
       if (corazones.length - 1 === 0) {
-        alert("¡Perdiste todos los corazones!");
-        // Aquí puedes reiniciar o bloquear la entrada, etc.
-        claveInput.disabled = true;
+       document.getElementById("mensajeGameOver").style.display = "block";
+      // Opcional: deshabilita el input
+      document.getElementById("inputClave").disabled = true;
       }
     }
   }
