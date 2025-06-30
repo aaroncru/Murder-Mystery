@@ -398,6 +398,12 @@
   </div>
 <audio id="sonidoPuerta" src="puerta.mp3" preload="auto"></audio>
 
+<!-- Pantalla nivel 2 -->
+<div class="pantalla-nivel2" id="pantallaNivel2" style="display: none;position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('cuarto-oscuro.jpg');background-size: cover; background-position: center; z-index: 30; display: flex; justify-content: center; align-items: center; font-size: 32px; color: white; text-shadow: 2px 2px 8px black; ">
+  <div>¡Bienvenido al Nivel 2!</div>
+</div>
+
+
   <!-- Lógica -->
   <script>
     function iniciarJuego() {
@@ -547,8 +553,11 @@ function cerrarSombrero() {
   function entrarPuerta() {
   const audio = document.getElementById("sonidoPuerta");
   audio.play();
+      audio.onended = () => {
+    document.getElementById("pantallaJuego").style.display = "none";
+    document.getElementById("pantallaNivel2").style.display = "flex";
+  };
 }
-
 
   </script>
 
