@@ -637,6 +637,37 @@ document.addEventListener("DOMContentLoaded", () => {
       mensaje.style.color = "crimson";
     }
   }
+    <script>
+  let intentosFallidos = 0;
+
+  function verificarClave() {
+    const claveInput = document.getElementById("claveMaletin");
+    const resultado = document.getElementById("resultadoClave");
+    const corazones = document.querySelectorAll("#corazonesNivel2 .heart");
+
+    if (claveInput.value.trim().toUpperCase() === "LEAF") {
+      resultado.textContent = "✔ ¡Correcto!";
+      resultado.style.color = "limegreen";
+    } else {
+      resultado.textContent = "✖ Incorrecto";
+      resultado.style.color = "red";
+      intentosFallidos++;
+
+      // Eliminar un corazón si quedan
+      if (corazones.length > 0) {
+        corazones[corazones.length - 1].remove();
+      }
+
+      // Opcional: si pierde todos los corazones
+      if (corazones.length - 1 === 0) {
+        alert("¡Perdiste todos los corazones!");
+        // Aquí puedes reiniciar o bloquear la entrada, etc.
+        claveInput.disabled = true;
+      }
+    }
+  }
+</script>
+
 
   </script>
 
