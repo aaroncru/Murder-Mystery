@@ -478,6 +478,7 @@ z-index: 100; width: 300px; box-shadow: 0 0 15px red; border-radius: 8px;" alt="
 <div class="pantalla-nivel3" id="pantallaNivel3">
   <h3 style="position: absolute; top: 20px;">Dining room</h3>
 
+<div class="top-right-hearts" id="heartsNivel3"></div>
 
   
 </div>
@@ -766,8 +767,22 @@ function entrarNivel3() {
 
     // Muestra la pantalla del nivel 3
     document.getElementById("pantallaNivel3").classList.add("activa");
+
+    // 🧠 TRANSFERIR corazones
+    const corazonesActuales = document.querySelectorAll("#pantallaNivel2 .heart").length;
+    const contenedorNivel3 = document.getElementById("heartsNivel3");
+    contenedorNivel3.innerHTML = ""; // Limpia por si acaso
+
+    for (let i = 0; i < corazonesActuales; i++) {
+      const corazon = document.createElement("img");
+      corazon.src = "heart.png";
+      corazon.classList.add("heart");
+      corazon.alt = "❤️";
+      contenedorNivel3.appendChild(corazon);
+    }
   };
 }
+
   </script>
 
 </body>
