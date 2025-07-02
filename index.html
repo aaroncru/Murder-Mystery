@@ -456,7 +456,7 @@ transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20
   <img src="heart.png" class="heart" alt="❤️" />
 </div>
 
-  <img src="maletin.png" id="maletin" alt="Maletín" style="position: absolute; top: 50%; left: 50%; width: 100px; cursor: pointer;" />
+  <img src="maletin.png" id="maletin" alt="Maletín" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100px; cursor: pointer;" />
 <audio id="sonidoMaletin" src="maletin.mp3" preload="auto"></audio>
 <audio id="sonidoError" src="error.mp3" preload="auto"></audio>
 <img src="maletin-abierto.png" id="maletinAbierto" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 150px; z-index: 60;" alt="Maletín Abierto" />
@@ -476,12 +476,23 @@ z-index: 100; width: 300px; box-shadow: 0 0 15px red; border-radius: 8px;" alt="
 </div>
 
 <div class="pantalla-nivel3" id="pantallaNivel3">
-  <h3 style="position: absolute; top: 40px;">Dining room</h3>
+  <h3 style="margin-top: 20px;">Dining room</h3>
 <div class="top-right-hearts" id="heartsNivel3"></div>
   
 <img src="carta2.png" id="imagenCartaNivel3" style="position: absolute; bottom: 80px; right: 30px; width: 60px; z-index: 20; cursor: pointer;" alt="Carta Nivel 3" />
 <img src="pergamino2.png" id="imagenPergaminoNivel3" style="display: none; position: absolute; top: 50%; left: 50%;
 transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20px black; border-radius: 8px;" alt="Pergamino Nivel 3" />
+
+  <!-- Objetos flotantes -->
+  <img src="botella.png" class="objeto" style="top: 30%; left: 25%;" alt="Botella" />
+<img id="imagenBotella1" src="vino1.jpg" style="display:none; position: absolute; top: 20%; left: 25%; width: 200px; z-index: 300; box-shadow: 0 0 15px black; border-radius: 8px; cursor: pointer;" alt="Botella Vino 1" />
+<img id="imagenBotella2" src="vino2.png" style="display:none; position: absolute; top: 30%; right: 25%; width: 200px; z-index: 300; box-shadow: 0 0 15px black; border-radius: 8px; cursor: pointer;" alt="Botella Vino 2" />
+
+  
+  <img src="tenedor.png" class="objeto" style="top: 55%; left: 60%;" alt="Tenedor" />
+  <img src="bala.png" class="objeto" style="top: 70%; left: 40%;" alt="Bala" />
+  <img src="silla.png" class="objeto" style="top: 45%; left: 75%;" alt="Silla" />
+</div>
 
   
 </div>
@@ -800,6 +811,26 @@ document.addEventListener("DOMContentLoaded", () => {
       pergaminoNivel3.style.display = "none";
     });
   }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const imagenBotella1 = document.getElementById("imagenBotella1");
+  const imagenBotella2 = document.getElementById("imagenBotella2");
+
+  document.querySelectorAll(".objeto").forEach(obj => {
+    if (obj.alt === "Botella") {
+      obj.addEventListener("click", () => {
+        imagenBotella1.style.display = "block";
+        imagenBotella2.style.display = "block";
+      });
+    }
+  });
+
+  // Ocultarlas al hacer clic en ellas
+  [imagenBotella1, imagenBotella2].forEach(img => {
+    img.addEventListener("click", () => {
+      img.style.display = "none";
+    });
+  });
 });
 
   </script>
