@@ -533,23 +533,15 @@ transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20
 <audio id="audioBala" src="pista-bala.mp3" preload="auto"></audio>
 
   <img src="silla.png" class="objeto" id="silla" style="top: 45%; left: 75%;" alt="Silla" />
-  <div id="contenedorLetras" style="display: none; position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.9); padding: 30px;
-  border-radius: 10px; z-index: 999; box-shadow: 0 0 20px white; text-align: center;">
-
-  <p style="color: white; font-family: monospace; margin-bottom: 10px;">Arrange the letters:</p>
-  <div id="zonaLetras" style="display: flex; gap: 15px; justify-content: center;">
-    <div class="letra" draggable="true">I</div>
-    <div class="letra" draggable="true">N</div>
-    <div class="letra" draggable="true">W</div>
-    <div class="letra" draggable="true">E</div>
-  </div>
-
-  <button onclick="cerrarLetras()" style="margin-top: 20px; background-color: red; color: white;
-    border: none; border-radius: 8px; padding: 5px 15px; cursor: pointer;">✖ Close</button>
-
-  <p id="resultadoLetras" style="color: limegreen; font-weight: bold; margin-top: 10px;"></p>
+<div id="contenedorSilla" style="display: none; position: absolute; top: 40%; left: 50%; transform: translate(-50%, -50%);
+background-color: rgba(0,0,0,0.9); padding: 30px; border-radius: 10px; box-shadow: 0 0 20px black; color: white; font-family: monospace; text-align: center; z-index: 100;">
+  <p>Write the secret word:</p>
+  <input type="text" id="inputSilla" style="padding: 10px; font-size: 16px; border-radius: 5px;" />
+  <br /><br />
+  <button onclick="verificarSilla()" style="padding: 8px 20px; border: none; background-color: green; color: white; border-radius: 5px; cursor: pointer;">✅ Check</button>
+  <p id="resultadoSilla" style="margin-top: 10px;"></p>
 </div>
+
 
   <img src="tenedor.png" class="objeto" style="top: 55%; left: 60%;" alt="Tenedor" />
   <!-- Contenedor del video (oculto al inicio) -->
@@ -985,53 +977,35 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 document.addEventListener("DOMContentLoaded", () => {
   const silla = document.querySelector("img[alt='Silla']");
-  const contenedor = document.getElementById("contenedorLetras");
-  const zonaLetras = document.getElementById("zonaLetras");
-  const resultado = document.getElementById("resultadoLetras");
+  const contenedorSilla = document.getElementById("contenedorSilla");
 
-  if (silla) {
+  if (silla && contenedorSilla) {
     silla.addEventListener("click", () => {
-      contenedor.style.display = "block";
+      contenedorSilla.style.display = "block";
     });
   }
-
-  let letraArrastrada = null;
-
-  zonaLetras.addEventListener("dragstart", (e) => {
-    if (e.target.classList.contains("letra")) {
-      letraArrastrada = e.target;
-    }
-  });
-
-  zonaLetras.addEventListener("dragover", (e) => {
-    e.preventDefault();
-  });
-
-  zonaLetras.addEventListener("drop", (e) => {
-    if (e.target.classList.contains("letra") && letraArrastrada) {
-      const letras = Array.from(zonaLetras.children);
-      const arrastradaIndex = letras.indexOf(letraArrastrada);
-      const objetivoIndex = letras.indexOf(e.target);
-
-      if (arrastradaIndex > -1 && objetivoIndex > -1) {
-        zonaLetras.insertBefore(letraArrastrada, 
-          arrastradaIndex < objetivoIndex ? e.target.nextSibling : e.target);
-      }
-
-      // Verificar si están en orden
-      const orden = Array.from(zonaLetras.children)
-        .map(el => el.textContent)
-        .join("");
-      if (orden === "WINE") {
-        resultado.textContent = "✔ Correct!";
-        const silla = document.getElementById("silla");
-        if (silla) silla.remove();
-      } else {
-        resultado.textContent = "";
-      }
-    }
-  });
 });
+
+function verificarSilla() {
+  const respuesta = document.getElementById("inputSilla").value.trim().toLowerCase();
+  const resultado = document.getElementById("resultadoSilla");
+  const contenedorSilla = document.getElementById("contenedorSilla");
+  const silla = document.querySelector("img[alt='Silla']");
+
+  if (respuesta === "WINE") { // 👈 puedes cambiar esta palabra secreta
+    resultado.textContent = "Correct!";
+    resultado.style.color = "lime";
+    setTimeout(() => {
+      contenedorSilla.style.display = "none";
+      if (silla) silla.remove();
+      verificarObjetosCerrados(); // ✅ cuenta como resuelto
+    }, 1000);
+  } else {
+    resultado.textContent = " X Incorrect!";
+    resultado.style.color = "red";
+  }
+}
+
 
 function cerrarLetras() {
   document.getElementById("contenedorLetras").style.display = "none";
