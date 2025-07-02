@@ -523,6 +523,22 @@ transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20
   <img src="silla.png" class="objeto" style="top: 45%; left: 75%;" alt="Silla" />
   
   <img src="tenedor.png" class="objeto" style="top: 55%; left: 60%;" alt="Tenedor" />
+  <!-- Contenedor del video (oculto al inicio) -->
+<div id="contenedorVideoTenedor" style="display: none; position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%; background-color: rgba(0,0,0,0.85);
+  z-index: 999; justify-content: center; align-items: center;">
+
+  <video id="videoTenedor" width="600" controls style="border-radius: 10px; box-shadow: 0 0 15px black;">
+    <source src="video-tenedor.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <button id="cerrarVideoTenedor" style="position: absolute; top: 20px; right: 30px;
+    background-color: red; color: white; font-size: 20px;
+    border: none; border-radius: 50%; width: 40px; height: 40px;
+    cursor: pointer; box-shadow: 0 0 10px black;">✖</button>
+</div>
+
 </div>
 
 
@@ -877,6 +893,28 @@ document.addEventListener("DOMContentLoaded", () => {
       contenedorBala.style.display = "none";
       audioBala.pause();
       audioBala.currentTime = 0;
+    });
+  }
+});
+document.addEventListener("DOMContentLoaded", () => {
+  const tenedor = document.querySelector("img[alt='Tenedor']");
+  const contenedorVideo = document.getElementById("contenedorVideoTenedor");
+  const cerrarVideo = document.getElementById("cerrarVideoTenedor");
+  const video = document.getElementById("videoTenedor");
+
+  if (tenedor) {
+    tenedor.addEventListener("click", () => {
+      contenedorVideo.style.display = "flex";
+      video.currentTime = 0;
+      video.play();
+    });
+  }
+
+  if (cerrarVideo) {
+    cerrarVideo.addEventListener("click", () => {
+      contenedorVideo.style.display = "none";
+      video.pause();
+      video.currentTime = 0;
     });
   }
 });
