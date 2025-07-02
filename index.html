@@ -987,30 +987,25 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function verificarSilla() {
-  const respuesta = document.getElementById("inputSilla").value.trim().toLowerCase();
+  const respuesta = document.getElementById("inputSilla").value.trim().toUpperCase();
   const resultado = document.getElementById("resultadoSilla");
   const contenedorSilla = document.getElementById("contenedorSilla");
   const silla = document.querySelector("img[alt='Silla']");
 
-  if (respuesta === "wine") { // 👈 puedes cambiar esta palabra secreta
+  if (respuesta === "WINE") {
     resultado.textContent = "Correct!";
     resultado.style.color = "lime";
     setTimeout(() => {
       contenedorSilla.style.display = "none";
       if (silla) silla.remove();
-      verificarObjetosCerrados(); // ✅ cuenta como resuelto
+      verificarObjetosCerrados();
     }, 1000);
   } else {
-    resultado.textContent = " X Incorrect!";
+    resultado.textContent = "✖ Incorrect!";
     resultado.style.color = "red";
   }
 }
 
-
-function cerrarLetras() {
-  document.getElementById("contenedorLetras").style.display = "none";
-  verificarNivel3Completo();
-}
 let objetosCompletadosNivel3 = 0;
 function verificarNivel3Completo() {
   objetosCompletadosNivel3++;
