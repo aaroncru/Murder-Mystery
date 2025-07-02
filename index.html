@@ -485,8 +485,20 @@ transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20
 
   <!-- Objetos flotantes -->
   <img src="botella.png" class="objeto" style="top: 30%; left: 25%;" alt="Botella" />
-<img id="imagenBotella1" src="vino1.jpg" style="display:none; position: absolute; top: 20%; left: 25%; width: 200px; z-index: 300; box-shadow: 0 0 15px black; border-radius: 8px; cursor: pointer;" alt="Botella Vino 1" />
-<img id="imagenBotella2" src="vino2.png" style="display:none; position: absolute; top: 30%; right: 25%; width: 200px; z-index: 300; box-shadow: 0 0 15px black; border-radius: 8px; cursor: pointer;" alt="Botella Vino 2" />
+<div id="contenedorVinos" style="display: none; position: absolute; top: 0; left: 0; 
+  width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); 
+  z-index: 300; display: flex; justify-content: center; align-items: center; gap: 0;">
+  
+  <img id="vino1" src="vino1.png" style="width: 200px; border-radius: 8px;" alt="Vino 1">
+  <img id="vino2" src="vino2.png" style="width: 200px; border-radius: 8px;" alt="Vino 2">
+
+  <button onclick="document.getElementById('contenedorVinos').style.display='none'"
+    style="position: absolute; top: 20px; right: 30px; 
+    background-color: red; color: white; font-size: 20px; 
+    border: none; border-radius: 50%; width: 40px; height: 40px; 
+    cursor: pointer;">✖</button>
+</div>
+
 
   <img src="bala.png" class="objeto" style="top: 70%; left: 40%;" alt="Bala" />
 <!-- Imagen que aparece al hacer clic en la bala -->
@@ -494,7 +506,7 @@ transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20
   width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); 
   z-index: 500; justify-content: center; align-items: center;">
 
-  <img id="imagenBala" src="bala-pista.jpg" 
+  <img id="imagenBala" src="bala-pista.JPG" 
     style="width: 300px; border-radius: 10px; box-shadow: 0 0 20px red; cursor: pointer;" 
     alt="Pista Bala" />
 
@@ -508,12 +520,9 @@ transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20
 <!-- Audio que se reproduce al hacer clic en la imagen -->
 <audio id="audioBala" src="pista-bala.mp3" preload="auto"></audio>
 
-  <img src="silla.jpg" class="objeto" style="top: 45%; left: 75%;" alt="Silla" />
+  <img src="silla.JPG" class="objeto" style="top: 45%; left: 75%;" alt="Silla" />
   
   <img src="tenedor.png" class="objeto" style="top: 55%; left: 60%;" alt="Tenedor" />
-</div>
-  
-  
 </div>
 
 
