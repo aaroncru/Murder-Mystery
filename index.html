@@ -330,6 +330,18 @@
 .pantalla-nivel3.activa {
   display: flex;
 }
+.letra {
+  background-color: white;
+  padding: 10px 15px;
+  font-size: 24px;
+  font-family: monospace;
+  border-radius: 8px;
+  cursor: grab;
+  user-select: none;
+}
+.letra:active {
+  cursor: grabbing;
+}
 
   </style>
 </head>
@@ -520,8 +532,25 @@ transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20
 <!-- Audio que se reproduce al hacer clic en la imagen -->
 <audio id="audioBala" src="pista-bala.mp3" preload="auto"></audio>
 
-  <img src="silla.png" class="objeto" style="top: 45%; left: 75%;" alt="Silla" />
-  
+  <img src="silla.png" class="objeto" id="silla" style="top: 45%; left: 75%;" alt="Silla" />
+  <div id="contenedorLetras" style="display: none; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); background-color: rgba(0,0,0,0.9); padding: 30px;
+  border-radius: 10px; z-index: 999; box-shadow: 0 0 20px white; text-align: center;">
+
+  <p style="color: white; font-family: monospace; margin-bottom: 10px;">Arrange the letters:</p>
+  <div id="zonaLetras" style="display: flex; gap: 15px; justify-content: center;">
+    <div class="letra" draggable="true">E</div>
+    <div class="letra" draggable="true">F</div>
+    <div class="letra" draggable="true">A</div>
+    <div class="letra" draggable="true">L</div>
+  </div>
+
+  <button onclick="cerrarLetras()" style="margin-top: 20px; background-color: red; color: white;
+    border: none; border-radius: 8px; padding: 5px 15px; cursor: pointer;">✖ Close</button>
+
+  <p id="resultadoLetras" style="color: limegreen; font-weight: bold; margin-top: 10px;"></p>
+</div>
+
   <img src="tenedor.png" class="objeto" style="top: 55%; left: 60%;" alt="Tenedor" />
   <!-- Contenedor del video (oculto al inicio) -->
 <div id="contenedorVideoTenedor" style="display: none; position: fixed; top: 0; left: 0;
@@ -918,6 +947,59 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+document.addEventListener("DOMContentLoaded", () => {
+  const silla = document.querySelector("img[alt='Silla']");
+  const contenedor = document.getElementById("contenedorLetras");
+  const zonaLetras = document.getElementById("zonaLetras");
+  const resultado = document.getElementById("resultadoLetras");
+
+  if (silla) {
+    silla.addEventListener("click", () => {
+      contenedor.style.display = "block";
+    });
+  }
+
+  let letraArrastrada = null;
+
+  zonaLetras.addEventListener("dragstart", (e) => {
+    if (e.target.classList.contains("letra")) {
+      letraArrastrada = e.target;
+    }
+  });
+
+  zonaLetras.addEventListener("dragover", (e) => {
+    e.preventDefault();
+  });
+
+  zonaLetras.addEventListener("drop", (e) => {
+    if (e.target.classList.contains("letra") && letraArrastrada) {
+      const letras = Array.from(zonaLetras.children);
+      const arrastradaIndex = letras.indexOf(letraArrastrada);
+      const objetivoIndex = letras.indexOf(e.target);
+
+      if (arrastradaIndex > -1 && objetivoIndex > -1) {
+        zonaLetras.insertBefore(letraArrastrada, 
+          arrastradaIndex < objetivoIndex ? e.target.nextSibling : e.target);
+      }
+
+      // Verificar si están en orden
+      const orden = Array.from(zonaLetras.children)
+        .map(el => el.textContent)
+        .join("");
+      if (orden === "WINE") {
+        resultado.textContent = "✔ Correct!";
+        const silla = document.getElementById("silla");
+        if (silla) silla.remove();
+      } else {
+        resultado.textContent = "";
+      }
+    }
+  });
+});
+
+function cerrarLetras() {
+  document.getElementById("contenedorLetras").style.display = "none";
+}
 
   </script>
 
