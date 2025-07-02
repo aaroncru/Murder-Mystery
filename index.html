@@ -500,7 +500,7 @@ transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20
 <div id="contenedorVinos" style="display: none; position: absolute; top: 0; left: 0; 
   width: 100%; height: 100%; background-color: rgba(0,0,0,0.8); 
   z-index: 300; justify-content: center; align-items: center; gap: 0;">
-  
+ 
   <img id="vino1" src="vino1.jpg" style="width: 200px; border-radius: 8px;" alt="Vino 1">
   <img id="vino2" src="vino2.png" style="width: 200px; border-radius: 8px;" alt="Vino 2">
 
@@ -566,6 +566,35 @@ transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20
     background-color: red; color: white; font-size: 20px;
     border: none; border-radius: 50%; width: 40px; height: 40px;
     cursor: pointer; box-shadow: 0 0 10px black;">✖</button>
+</div>
+<!-- Puerta final nivel 3 -->
+<img src="puerta-final.png" id="puertaFinalSecreta" 
+  style="display: none; position: absolute; bottom: 40px; right: 40px; width: 100px; cursor: pointer; z-index: 900;"
+  alt="Puerta Final" onclick="mostrarMensajeFinal()" />
+<!-- Contenedor final con historia y acertijo -->
+<div id="mensajeFinal" style="display: none; position: absolute; top: 0; left: 0;
+  width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); color: white;
+  font-family: monospace; padding: 40px; box-sizing: border-box; z-index: 999; overflow-y: auto;">
+
+  <p style="font-size: 18px; margin-bottom: 20px;">
+    During dinner, she laughed, unaware it would be the last time. As she savored the spaghetti, her body collapsed onto the plate.<br><br>
+    While the others screamed, Mr. E. remained calm. "Heart attack," they murmured.<br><br>
+    Weeks later, the cameras revealed the truth: Mr. E. and the chef didn't just share culinary secrets... they shared love.<br><br>
+    She wasn't poisoned by jealousy.
+  </p>
+
+  <p style="font-size: 20px; margin-bottom: 10px;">
+    She was eliminated by <span style="letter-spacing: 10px;">_ _ _ _</span>
+  </p>
+
+  <input type="text" id="inputFinal" maxlength="4"
+    style="padding: 10px; font-size: 18px; text-transform: uppercase; border-radius: 5px; border: none;" />
+  <button onclick="verificarRespuestaFinal()"
+    style="margin-left: 10px; padding: 10px 20px; background-color: crimson; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    Check
+  </button>
+
+  <p id="mensajeResultadoFinal" style="margin-top: 20px; font-size: 16px;"></p>
 </div>
 
 </div>
@@ -895,6 +924,8 @@ document.addEventListener("DOMContentLoaded", () => {
       contenedorVinos.style.display = "flex";
     });
   }
+contenedorVinos.style.display = "none";
+verificarNivel3Completo();
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -922,6 +953,8 @@ document.addEventListener("DOMContentLoaded", () => {
       contenedorBala.style.display = "none";
       audioBala.pause();
       audioBala.currentTime = 0;
+      verificarNivel3Completo();
+
     });
   }
 });
@@ -945,6 +978,9 @@ document.addEventListener("DOMContentLoaded", () => {
       video.pause();
       video.currentTime = 0;
     });
+    document.getElementById("videoContenedor").style.display = "none";
+    verificarNivel3Completo();
+
   }
 });
 document.addEventListener("DOMContentLoaded", () => {
@@ -999,6 +1035,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function cerrarLetras() {
   document.getElementById("contenedorLetras").style.display = "none";
+  verificarNivel3Completo();
+}
+let objetosCompletadosNivel3 = 0;
+function verificarNivel3Completo() {
+  objetosCompletadosNivel3++;
+  if (objetosCompletadosNivel3 === 4) {
+    document.getElementById("puertaFinalNivel3").style.display = "block";
+  }
+}
+function mostrarMensajeFinal() {
+  document.getElementById("mensajeFinal").style.display = "block";
+}
+
+function verificarRespuestaFinal() {
+  const input = document.getElementById("inputFinal").value.trim().toUpperCase();
+  const mensaje = document.getElementById("mensajeResultadoFinal");
+
+  if (input === "LOVE") {
+    mensaje.textContent = "✔ Correct. The truth always comes out.";
+    mensaje.style.color = "limegreen";
+
+    // Aquí puedes poner más acciones: mostrar final, botón, créditos, etc.
+  } else {
+    mensaje.textContent = "✖ Incorrect. Try again.";
+    mensaje.style.color = "red";
+  }
 }
 
   </script>
