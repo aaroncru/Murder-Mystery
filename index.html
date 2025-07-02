@@ -520,7 +520,7 @@ transform: translate(-50%, -50%); width: 300px; z-index: 100; box-shadow: 0 0 20
 <!-- Audio que se reproduce al hacer clic en la imagen -->
 <audio id="audioBala" src="pista-bala.mp3" preload="auto"></audio>
 
-  <img src="silla.JPG" class="objeto" style="top: 45%; left: 75%;" alt="Silla" />
+  <img src="silla.png" class="objeto" style="top: 45%; left: 75%;" alt="Silla" />
   
   <img src="tenedor.png" class="objeto" style="top: 55%; left: 60%;" alt="Tenedor" />
 </div>
@@ -840,26 +840,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+    
 document.addEventListener("DOMContentLoaded", () => {
-  const imagenBotella1 = document.getElementById("imagenBotella1");
-  const imagenBotella2 = document.getElementById("imagenBotella2");
+  const botella = document.querySelector("img[alt='Botella']");
+  const contenedorVinos = document.getElementById("contenedorVinos");
 
-  document.querySelectorAll(".objeto").forEach(obj => {
-    if (obj.alt === "Botella") {
-      obj.addEventListener("click", () => {
-        imagenBotella1.style.display = "block";
-        imagenBotella2.style.display = "block";
-      });
-    }
-  });
-
-  // Ocultarlas al hacer clic en ellas
-  [imagenBotella1, imagenBotella2].forEach(img => {
-    img.addEventListener("click", () => {
-      img.style.display = "none";
+  if (botella) {
+    botella.addEventListener("click", () => {
+      contenedorVinos.style.display = "flex";
     });
-  });
+  }
 });
+
 document.addEventListener("DOMContentLoaded", () => {
   const bala = document.querySelector("img[alt='Bala']");
   const contenedorBala = document.getElementById("contenedorBala");
