@@ -587,6 +587,15 @@ background-color: rgba(0,0,0,0.9); padding: 30px; border-radius: 10px; box-shado
 </div>
 
 </div>
+<!-- Pantalla Final de Salida -->
+<div id="pantallaSalida" style="display: none; position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%; z-index: 9999; background: url('final.gif') no-repeat center center/cover;
+  display: flex; justify-content: center; align-items: center; flex-direction: column; color: white; font-family: monospace; text-align: center;">
+  
+  <h1 style="font-size: 40px; background-color: rgba(0,0,0,0.6); padding: 20px; border-radius: 10px;">
+    🎉 Congratulations! You've uncovered the truth.
+  </h1>
+</div>
 
 
   <!-- Lógica -->
@@ -1023,15 +1032,21 @@ function verificarRespuestaFinal() {
   const input = document.getElementById("inputFinal").value.trim().toUpperCase();
   const mensaje = document.getElementById("mensajeResultadoFinal");
   const corazones = document.querySelectorAll("#pantallaNivel3 .heart");
-
+  const sonidoError = document.getElementById("sonidoError");
   if (input === "LOVE") {
     mensaje.textContent = "✔ Correct. The truth always comes out.";
     mensaje.style.color = "limegreen";
-    // Aquí puedes hacer más cosas si acierta
+    // Espera 1 segundo y muestra pantalla de salida
+    setTimeout(() => {
+      document.getElementById("pantallaSalida").style.display = "flex";
+    }, 1000);
   } else {
     mensaje.textContent = "✖ Incorrect. Try again.";
     mensaje.style.color = "red";
-
+if (sonidoError) {
+      sonidoError.currentTime = 0;
+      sonidoError.play();
+    }
     // Eliminar un corazón si quedan
     if (corazones.length > 0) {
       corazones[corazones.length - 1].remove();
