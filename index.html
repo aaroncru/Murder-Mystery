@@ -540,6 +540,10 @@ background-color: rgba(0,0,0,0.9); padding: 30px; border-radius: 10px; box-shado
   <br /><br />
   <button onclick="verificarSilla()" style="padding: 8px 20px; border: none; background-color: green; color: white; border-radius: 5px; cursor: pointer;">✅ Check</button>
   <p id="resultadoSilla" style="margin-top: 10px;"></p>
+  <button id="cerrarSilla" style="position: absolute; top: 10px; right: 10px;
+  background-color: crimson; color: white; font-size: 18px; border: none; border-radius: 50%;
+  width: 30px; height: 30px; cursor: pointer;">✖</button>
+
 </div>
 
 
@@ -561,32 +565,27 @@ background-color: rgba(0,0,0,0.9); padding: 30px; border-radius: 10px; box-shado
 </div>
 <!-- Puerta final nivel 3 -->
 <img src="puerta-final.png" id="puertaFinalNivel3" 
-  style="display: none; position: absolute; bottom: 40px; right: 40px; width: 100px; cursor: pointer; z-index: 900;"
+  style="display: none; position: absolute; bottom: 40px; left: 40px; width: 100px; cursor: pointer; z-index: 900;"
   alt="Puerta Final" onclick="mostrarMensajeFinal()" />
 <!-- Contenedor final con historia y acertijo -->
 <div id="mensajeFinal" style="display: none; position: absolute; top: 0; left: 0;
   width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); color: white;
   font-family: monospace; padding: 40px; box-sizing: border-box; z-index: 999; overflow-y: auto;">
 
-  <p style="font-size: 18px; margin-bottom: 20px;">
-    During dinner, she laughed, unaware it would be the last time. As she savored the spaghetti, her body collapsed onto the plate.<br><br>
-    While the others screamed, Mr. E. remained calm. "Heart attack," they murmured.<br><br>
-    Weeks later, the cameras revealed the truth: Mr. E. and the chef didn't just share culinary secrets... they shared love.<br><br>
-    She wasn't poisoned by jealousy.
-  </p>
+ <img src="evidencia-final.png" alt="Evidencia final" style="max-width: 80%; border-radius: 10px; box-shadow: 0 0 20px black; margin-bottom: 30px;" />
 
-  <p style="font-size: 20px; margin-bottom: 10px;">
-    She was eliminated by <span style="letter-spacing: 10px;">_ _ _ _</span>
-  </p>
+  <p style="font-size: 20px; margin-bottom: 10px;">She was elimated by _ _ _ _</p>
 
-  <input type="text" id="inputFinal" maxlength="4"
+  <input type="text" id="inputFinal" maxlength="10"
     style="padding: 10px; font-size: 18px; text-transform: uppercase; border-radius: 5px; border: none;" />
+  
   <button onclick="verificarRespuestaFinal()"
     style="margin-left: 10px; padding: 10px 20px; background-color: crimson; color: white; border: none; border-radius: 5px; cursor: pointer;">
-    Check
+    🔐Verify
   </button>
 
   <p id="mensajeResultadoFinal" style="margin-top: 20px; font-size: 16px;"></p>
+</div>
 </div>
 
 </div>
@@ -976,10 +975,15 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const silla = document.querySelector("img[alt='Silla']");
   const contenedorSilla = document.getElementById("contenedorSilla");
-
+  const cerrarBtnSilla = document.getElementById("cerrarSilla");
   if (silla && contenedorSilla) {
     silla.addEventListener("click", () => {
       contenedorSilla.style.display = "block";
+    });
+  }
+  if (cerrarBtnSilla) {
+    cerrarBtnSilla.addEventListener("click", () => {
+      contenedorSilla.style.display = "none";
     });
   }
 });
