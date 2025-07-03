@@ -1019,21 +1019,36 @@ function mostrarMensajeFinal() {
   bloque.style.display = (bloque.style.display === "none") ? "block" : "none";
 }
 
-
 function verificarRespuestaFinal() {
   const input = document.getElementById("inputFinal").value.trim().toUpperCase();
   const mensaje = document.getElementById("mensajeResultadoFinal");
+  const corazones = document.querySelectorAll("#pantallaNivel3 .heart");
 
   if (input === "LOVE") {
     mensaje.textContent = "✔ Correct. The truth always comes out.";
     mensaje.style.color = "limegreen";
-
-    // Aquí puedes poner más acciones: mostrar final, botón, créditos, etc.
+    // Aquí puedes hacer más cosas si acierta
   } else {
     mensaje.textContent = "✖ Incorrect. Try again.";
     mensaje.style.color = "red";
+
+    // Eliminar un corazón si quedan
+    if (corazones.length > 0) {
+      corazones[corazones.length - 1].remove();
+    }
+    if (corazones.length - 1 === 0) {
+      const gameOver = document.getElementById("mensajeGameOver");
+      gameOver.style.display = "block";
+
+      const sfxGameOver = document.getElementById("sonidoGameOver");
+      if (sfxGameOver) {
+        sfxGameOver.currentTime = 0;
+        sfxGameOver.play();
+      }
+    }
   }
 }
+
 document.addEventListener("DOMContentLoaded", () => {
   const imagenFinal = document.getElementById("imagenFinalHint");
   const bloque = document.getElementById("bloqueFinalRespuesta");
