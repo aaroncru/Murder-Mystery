@@ -567,22 +567,25 @@ background-color: rgba(0,0,0,0.9); padding: 30px; border-radius: 10px; box-shado
 <img src="puerta-final.png" id="puertaFinalNivel3" 
   style="display: none; position: absolute; bottom: 40px; left: 40px; width: 100px; cursor: pointer; z-index: 900;"
   alt="Puerta Final" onclick="mostrarMensajeFinal()" />
-<!-- Contenedor final con historia y acertijo -->
-<div id="mensajeFinal" style="display: none; position: absolute; top: 0; left: 0;
-  width: 100%; height: 100%; background-color: rgba(0,0,0,0.95); color: white;
-  font-family: monospace; padding: 40px; box-sizing: border-box; z-index: 999; overflow-y: auto;">
+<!-- Bloque que aparece junto a la puerta final -->
+<div id="bloqueFinalRespuesta" style="display: none; position: absolute; bottom: 160px; right: 40px;
+  background-color: rgba(0, 0, 0, 0.9); padding: 20px; border-radius: 12px; color: white; font-family: monospace;
+  box-shadow: 0 0 20px black; text-align: center; z-index: 1000; width: 300px;">
 
- <img src="evidencia-final.png" alt="Evidencia final" style="max-width: 80%; border-radius: 10px; box-shadow: 0 0 20px black; margin-bottom: 30px;" />
-
-  <p style="font-size: 20px; margin-bottom: 10px;">She was elimated by _ _ _ _</p>
+  <img id="imagenFinalHint" src="evidencia-final.jpg" alt="Pista final"
+    style="width: 100%; border-radius: 8px; margin-bottom: 10px; cursor: pointer;" />
 
   <input type="text" id="inputFinal" maxlength="10"
-    style="padding: 10px; font-size: 18px; text-transform: uppercase; border-radius: 5px; border: none;" />
-  
+    style="padding: 10px; width: 100%; font-size: 16px; text-transform: uppercase; border-radius: 5px; border: none; margin-bottom: 10px;" />
+
   <button onclick="verificarRespuestaFinal()"
-    style="margin-left: 10px; padding: 10px 20px; background-color: crimson; color: white; border: none; border-radius: 5px; cursor: pointer;">
-    🔐Verify
+    style="padding: 8px 16px; background-color: crimson; color: white; border: none; border-radius: 5px; cursor: pointer;">
+    🔐Verify🔐
   </button>
+
+  <p id="mensajeResultadoFinal" style="margin-top: 10px; font-size: 14px;"></p>
+</div>
+
 
   <p id="mensajeResultadoFinal" style="margin-top: 20px; font-size: 16px;"></p>
 </div>
@@ -1016,8 +1019,11 @@ function verificarNivel3Completo() {
   }
 }
 function mostrarMensajeFinal() {
-  document.getElementById("mensajeFinal").style.display = "block";
+  const bloque = document.getElementById("bloqueFinalRespuesta");
+  // Alternar visibilidad
+  bloque.style.display = (bloque.style.display === "none") ? "block" : "none";
 }
+
 
 function verificarRespuestaFinal() {
   const input = document.getElementById("inputFinal").value.trim().toUpperCase();
@@ -1033,6 +1039,16 @@ function verificarRespuestaFinal() {
     mensaje.style.color = "red";
   }
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const imagenFinal = document.getElementById("imagenFinalHint");
+  const bloque = document.getElementById("bloqueFinalRespuesta");
+
+  if (imagenFinal) {
+    imagenFinal.addEventListener("click", () => {
+      bloque.style.display = "none";
+    });
+  }
+});
 
   </script>
 
