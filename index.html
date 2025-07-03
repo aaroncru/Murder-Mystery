@@ -560,7 +560,7 @@ background-color: rgba(0,0,0,0.9); padding: 30px; border-radius: 10px; box-shado
     cursor: pointer; box-shadow: 0 0 10px black;">✖</button>
 </div>
 <!-- Puerta final nivel 3 -->
-<img src="puerta-final.png" id="puertaFinalSecreta" 
+<img src="puerta-final.png" id="puertaFinalNivel3" 
   style="display: none; position: absolute; bottom: 40px; right: 40px; width: 100px; cursor: pointer; z-index: 900;"
   alt="Puerta Final" onclick="mostrarMensajeFinal()" />
 <!-- Contenedor final con historia y acertijo -->
@@ -998,7 +998,7 @@ function verificarSilla() {
     setTimeout(() => {
       contenedorSilla.style.display = "none";
       if (silla) silla.remove();
-      verificarObjetosCerrados();
+      verificarNivel3Completo();
     }, 1000);
   } else {
     resultado.textContent = "✖ Incorrect!";
