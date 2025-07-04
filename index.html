@@ -828,68 +828,21 @@ document.addEventListener("DOMContentLoaded", () => {
         corazones[corazones.length - 1].remove();
       }
 
-     if (corazones.length - 1 === 0) {
+      if (corazones.length - 1 === 0) {
+  // Mostrar mensaje de GAME OVER
   const mensajeGameOver = document.getElementById("mensajeGameOver");
-  mensajeGameOver.innerHTML = `
-    <h2 style="font-size: 32px; margin-bottom: 20px;">GAME OVER</h2>
-    <p style="font-size: 18px;">You lost all your lives.</p>
-    <button id="btnReiniciarJuego"
-      style="margin-top: 30px; padding: 12px 24px; background-color: crimson; color: white;
-      font-size: 18px; border: none; border-radius: 8px; cursor: pointer;">
-      🔁 Play Again
-    </button>
-  `;
   mensajeGameOver.style.display = "block";
 
-  // Sonido de game over
+  // Reproducir sonido de GAME OVER
   const sonidoGameOver = document.getElementById("sonidoGameOver");
   if (sonidoGameOver) {
     sonidoGameOver.currentTime = 0;
     sonidoGameOver.play();
   }
 
-  // Desactiva input
+  // Deshabilita el input
   document.getElementById("inputClave").disabled = true;
-
-  // Añadir evento al botón
-  const btnReiniciar = document.getElementById("btnReiniciarJuego");
-  btnReiniciar.addEventListener("click", () => {
-    // Oculta mensajes y pantallas
-    mensajeGameOver.style.display = "none";
-    document.getElementById("pantallaNivel2").style.display = "none";
-    document.getElementById("pantallaNivel3").style.display = "none";
-
-    // Reinicia corazones
-    const heartsNivel2 = document.getElementById("heartsNivel2");
-    const heartsNivel3 = document.getElementById("heartsNivel3");
-    if (heartsNivel2) heartsNivel2.innerHTML = "";
-    if (heartsNivel3) heartsNivel3.innerHTML = "";
-    for (let i = 0; i < 3; i++) {
-      const heart = document.createElement("img");
-      heart.src = "heart.png";
-      heart.classList.add("heart");
-      heart.alt = "❤️";
-      heartsNivel2?.appendChild(heart);
-    }
-
-    // Reiniciar estados
-    document.getElementById("inputClave").disabled = false;
-    document.getElementById("inputClave").value = "";
-    document.getElementById("resultadoClave").textContent = "";
-    intentosFallidos = 0;
-    objetosCompletadosNivel3 = 0;
-
-    // Mostrar pantalla principal
-    document.getElementById("pantallaInicio").style.display = "block";
-    document.getElementById("pantallaInicio").style.opacity = "1";
-
-    // Oculta pantallas activas
-    document.getElementById("pantallaJuego").classList.remove("activa");
-    document.getElementById("pantallaNivel2").classList.remove("activa");
-    document.getElementById("pantallaNivel3").classList.remove("activa");
-  });
 }
-
 
     }
   }
